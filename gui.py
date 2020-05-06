@@ -56,7 +56,7 @@ class Application(tk.Tk):
     def create_widgets(self):
         # Creating the buttons 
         self.merge_btn = tk.Button(self, text = "Merge PDF", padx = 50, pady = 50, command = self.merge)
-        self.convert_btn = tk.Button(self, text = "Convert to .docx", padx = 45, pady = 50)
+        self.convert_btn = tk.Button(self, text = "Convert to .docx", padx = 45, pady = 50, command=self.docxtoPDF)
         self.edit_btn = tk.Button(self, text = "Edit PDF", padx = 56, pady = 50)
         self.extract_btn = tk.Button(self, text = "Convert to .pdf", padx = 64, pady = 50)
         # Positioning the buttons 
