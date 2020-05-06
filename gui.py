@@ -79,6 +79,7 @@ class Application(tk.Tk):
         button.pack()
 
 
+
     # A wrapper function for create_split in pdf_edit.py
     # Opens newly created pdf and prompts user to select pdf and folder to store
     def create_split_pdf(self, output_name, start, end): 
