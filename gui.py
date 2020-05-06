@@ -30,14 +30,28 @@ class Application(tk.Tk):
         self.extract_btn.grid(row = 4, column = 4,  padx = 10, pady = 20)
 
 
+    def merge(self):
+        top = tk.Toplevel()
+        top.title("Edit your Pdf")
+        top.iconbitmap('C:/Users/chenp/Documents/GitHub/PDFEdit/res/pdf.ico')
+        top.geometry("400x400")
+        f_label = tk.Label(top, font =("Arial", "12"), text = "Merged file name:", pady = 20)
+        file = tk.Entry(top, width = 35, borderwidth = 5)
+        button = tk.Button(top, font =("Arial", "12"), text = "Merge PDF", padx = 30, pady = 20, 
+                            fg = '#ffffff', bg = '#ff0000', command = lambda: self.merge_wrapper(file.get()))
+        f_label.pack()
+        file.pack()
+        button.pack()
+
+
     # This function opens 3 separate file dialogs to find the combined PDF and location 
     # to be saved
     # Merged file is opened afterwards 
-    def merge(self):
+    def merge_wrapper(self, output):
         pdf1 = tk.filedialog.askopenfilename(initialdir = os.getcwd(), title = "Select first PDF")
         pdf2 = tk.filedialog.askopenfilename(initialdir = os.getcwd(), title = "Select second PDF")
         location = tk.filedialog.askdirectory(initialdir = os.getcwd(), title = "Select a folder to be stored")
-        combined = edit.merge_pdfs('merged.pdf', location, pdf1, pdf2)
+        combined = edit.merge_pdfs(f'{output}.pdf', location, pdf1, pdf2)
         os.startfile(combined)
 
 
@@ -71,6 +85,10 @@ class Application(tk.Tk):
         file = tk.filedialog.askopenfilename(initialdir = os.getcwd(), title = "Select PDF")
         folder = tk.filedialog.askdirectory(initialdir = os.getcwd(), title = "Select Folder To Store")
         new_file = edit.create_split(file, output_name, folder, start, end)
+        os.startfile(new_file)
+
+
+    def start_file(self, new_file):
         os.startfile(new_file)
 
 
