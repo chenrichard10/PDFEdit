@@ -14,7 +14,7 @@ class Application(tk.Tk):
         tk.Tk.__init__(self)
         # Main window is not resizable for now 
         self.resizable(0, 0)
-        self.geometry("400x300")
+        self.geometry("350x280")
         self.title("PDFEdit")
         self.iconbitmap('C:/Users/chenp/Documents/GitHub/PDFEdit/res/pdf.ico')
         self.create_widgets()
@@ -88,19 +88,15 @@ class Application(tk.Tk):
         top.title("Edit your Pdf")
         top.iconbitmap('C:/Users/chenp/Documents/GitHub/PDFEdit/res/pdf.ico')
         top.geometry("400x400")
-        label = tk.Label(top, font =("Arial", "12"), text = "Enter the starting page",pady = 20)
-        label2 = tk.Label(top, font =("Arial", "12"), text = "Enter the ending page", pady = 20)
+        label = tk.Label(top, font =("Arial", "12"), text = "Page range or pages (e.g 1-2 or 1,2,3)",pady = 20)
         label3 = tk.Label(top, font =("Arial", "12"), text = "File name", pady = 20)
-        start = tk.Entry(top, width = 35, borderwidth = 5)
-        end = tk.Entry(top, width = 35, borderwidth = 5)
+        pages = tk.Entry(top, width = 35, borderwidth = 5)
         file = tk.Entry(top, width = 35, borderwidth = 5)
         button = tk.Button(top, font =("Arial", "12"), text = "Create PDF", padx = 30, pady = 20, 
                             fg = '#ffffff', bg = '#ff0000', command = lambda: 
-                            self.create_split_pdf(file.get()+".pdf", start.get(), end.get()))
+                            self.create_split_pdf(file.get()+".pdf", pages.get()))
         label.pack()
-        start.pack()
-        label2.pack()
-        end.pack()
+        pages.pack()
         label3.pack()
         file.pack()
         button.pack()
@@ -108,10 +104,10 @@ class Application(tk.Tk):
 
     # A wrapper function for create_split in pdf_edit.py
     # Opens newly created pdf and prompts user to select pdf and folder to store
-    def create_split_pdf(self, output_name, start, end): 
+    def create_split_pdf(self, output_name, pages): 
         file = tk.filedialog.askopenfilename(initialdir = os.getcwd(), title = "Select PDF")
         folder = tk.filedialog.askdirectory(initialdir = os.getcwd(), title = "Select Folder To Store")
-        new_file = edit.create_split(file, output_name, folder, start, end)
+        new_file = edit.create_split(file, output_name, folder, pages)
         os.startfile(new_file)
 
 

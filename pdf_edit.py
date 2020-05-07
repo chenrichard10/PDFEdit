@@ -25,14 +25,22 @@ def merge_pdfs(output_name, location, pdf1, pdf2):
 # create_split creates a new pdf from a given pdf 
 # with page ranging from (start, end)
 # returns location of newly created pdf
-def create_split(pdf, output_name, location, start, end):
-    start = int(start)
-    end   = int(end) + 1
+def create_split(pdf, output_name, location, pages):
     location = location + '/'+ output_name
     pdf_writer = PdfFileWriter()
     pdf_reader = PdfFileReader(pdf)
-    for page in range(start, end):
-        pdf_writer.addPage(pdf_reader.getPage(page))
+    if "," in pages:
+        pages = pages.split(",")
+        pages = [int(i) for i in pages]
+        for page in pages:
+            pdf_writer.addPage(pdf_reader.getPage(page))
+    elif '-' in pages:
+        pages = pages.split('-')
+        pages = [int(i) for i in pages]
+        start = pages[0]
+        end = pages[1] + 1
+        for page in range(start, end):
+            pdf_writer.addPage(pdf_reader.getPage(page))
     with open(location, 'wb') as out:
         pdf_writer.write(out)
     print(location)

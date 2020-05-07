@@ -4,6 +4,6 @@
  or convert word files.
 ## Screenshots
 ### ![Outline][logo]
-[logo]:https://github.com/chenrichard10/PDFEdit/res/outline.png
+[logo]:https://github.com/chenrichard10/PDFEdit/blob/master/res/outline.PNG
 ### ![Edit PDF Screen][logo]
-[logo]:https://github.com/chenrichard10/PDFEdit/res/EditPDF.png
+[logo]:https://github.com/chenrichard10/PDFEdit/blob/master/res/EditPDF.PNG
